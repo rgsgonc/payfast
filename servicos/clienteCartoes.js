@@ -1,3 +1,4 @@
+//Aqui estamos criando um cliente REST.
 var restify = require('restify');
 var clientes = require('restify-clients');
 

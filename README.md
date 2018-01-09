@@ -13,9 +13,11 @@
 
 ``` npm install --save nodemon```
 
+``` npm install --save soap ```
+
 # Postman
 
-## Obs: Para funcionar as duas aplicações devem estar de pé (payfast e cardfast)
+Obs: Para funcionar as duas aplicações devem estar de pé (payfast e cardfast)
 
 * Para realizar um POST de pagamento <em> (FORMA DE PAGAMENTO: payfast)</em> as configuração abaixo devem ser inseridas no POSTMAN.
 
@@ -53,6 +55,20 @@ Body:
     "mes_de_expiracao": 12,
     "cvv": 123
   }
+}
+```
+
+* Para realizar um POST de calculo de prazo dos correios as configuração abaixo devem ser inseridas no POSTMAN.
+
+```
+Method: POST
+URL: http://localhost:3000/correios/calculo-prazo
+Headers: Content-Type:application/json
+Body:
+{
+    "nCdServico": "40010",
+	"sCepOrigem": "88117402",
+	"sCepDestino": "88161590"
 }
 ```
 
