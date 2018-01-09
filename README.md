@@ -15,7 +15,9 @@
 
 # Postman
 
-* Para realizar um POST de pagamento as configuração abaixo devem ser inseridas no POSTMAN.
+## Obs: Para funcionar as duas aplicações devem estar de pé (payfast e cardfast)
+
+* Para realizar um POST de pagamento <em> (FORMA DE PAGAMENTO: payfast)</em> as configuração abaixo devem ser inseridas no POSTMAN.
 
 ```
 Method: POST
@@ -27,6 +29,30 @@ Body:
     "valor": "10.87",
     "moeda": "BRL",
     "descricao": "descrição do pagamento"
+}
+```
+
+* Para realizar um POST de pagamento <em> (FORMA DE PAGAMENTO: cartao)</em> as configuração abaixo devem ser inseridas no POSTMAN.
+
+```
+Method: POST
+URL: http://localhost:3000/pagamentos/pagamento
+Headers: Content-Type:application/json
+Body:
+{
+  "pagamento": {
+    "forma_de_pagamento": "cartao",
+    "valor": "10.87",
+    "moeda": "BRL",
+    "descricao": "descrição do pagamento"
+  },
+  "cartao": {
+    "numero": 1111111111111111,
+    "bandeira": "visa",
+    "ano_de_expiracao": 2016,
+    "mes_de_expiracao": 12,
+    "cvv": 123
+  }
 }
 ```
 
