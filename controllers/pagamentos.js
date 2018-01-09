@@ -3,7 +3,30 @@ module.exports = function(app){
       console.log('Recebida requisicao de teste na porta 3000.')
       res.send('OK.');
     });
+
+    //BUSCAR PAGAMENTO POR ID.
+    app.get('/pagamentos/pagamento/:id', function(req, res){
+        var id = req.params.id;
+        console.log('consultando o pagamento de id: ' + id);
+
+        var connection = app.persistencia.connectionFactory();
+        var pagamentoDao = new app.persistencia.PagamentoDao(connection);
+
+        pagamentoDao.buscaPorId(id, function(erro, resultado){
+            if(erro){
+                console.log("erro ao buscar o pagamento por id no banco: " + erro);
+                res.status(500).send(erro);
+                return;
+            }
+
+            console.log('pagamento encontrado: ' + JSON.stringify(resultado));
+            res.json(resultado);
+            return;
+        });
+
+    });
   
+    //DELETAR
     app.delete('/pagamentos/pagamento/:id', function(req, res){
       var pagamento = {};
       var id = req.params.id;
@@ -24,8 +47,8 @@ module.exports = function(app){
       });
     });
   
+    //ALTERAR
     app.put('/pagamentos/pagamento/:id', function(req, res){
-  
       var pagamento = {};
       var id = req.params.id;
   
@@ -46,6 +69,7 @@ module.exports = function(app){
   
     });
   
+    //CADASTRAR
     app.post('/pagamentos/pagamento', function(req, res){
   
       req.assert("pagamento.forma_de_pagamento", "Forma de pagamento eh obrigatorio").notEmpty();

@@ -82,6 +82,13 @@ Headers: Content-Type:application/octet-stream
 Body: binary
 ```
 
+* Para realizar um GET de pagamentos pelo ID.
+
+```
+Method: GET
+URL: http://localhost:3000/pagamentos/pagamento/3
+```
+
 # Base de Dados
 ```
 CREATE DATABASE IF NOT EXIST payfast;
