@@ -1,19 +1,23 @@
 # Dependencias
- ``` npm install express --save ```
+``` sudo apt install memcached ```
 
- ``` npm install consign --save ```
+``` npm install express --save ```
 
- ``` npm install body-parser --save ```
+``` npm install consign --save ```
 
- ``` npm install --save mysql ```
+``` npm install body-parser --save ```
 
- ``` npm install express-validator --save ```
+``` npm install --save mysql ```
 
- ``` npm install --save restify-clients ```
+``` npm install express-validator --save ```
+
+``` npm install --save restify-clients ```
 
 ``` npm install --save nodemon```
 
 ``` npm install --save soap ```
+
+``` npm install --save memcached ```
 
 # Postman
 
