@@ -1,3 +1,5 @@
+
+
 module.exports = function(app) {
     app.get("/pagamentos",function(req, res) {
          res.send('lista de pagamentos');
@@ -26,13 +28,35 @@ module.exports = function(app) {
         pagamento.status = "CRIADO";
         pagamento.data = new Date;
 
-        pagamentoDao.salva(pagamento, function(exception, result){
-            console.log('pagamento criado: ' + result);
-            res.location('/pagamentos/pagamento/' + result.insertId);
+        pagamentoDao.salva(pagamento, function(erro, result){
+            if(erro){
+                console.log('Erro ao inserir no banco: ' + erro);
+                res.status(500).send(erro);
+            }else{
+                pagamento.id = result.insertId;
+                console.log('pagamento criado: ' + result);
+                res.location('/pagamentos/pagamento/' + pagamento.id);
+            }
 
-      pagamento.id = result.insertId;
 
-      res.status(201).json(pagamento);
+            //Informar para o usuário o que ele pode fazer a seguir.
+            var response = {
+                dados_do_pagamento : pagamento,
+                links: [
+                    {
+                        href:"http:localhost:3000/pagamentos/pagamentos/" + pagamento.id,
+                        rel:"confirmar",
+                        method:"PUT"
+                    },
+                    {
+                        href:"http:localhost:3000/pagamentos/pagamentos/" + pagamento.id,
+                        rel:"cancelar",
+                        method:"DELETE"
+                    } 
+                ]
+            }
+
+             res.status(201).json(response);
           });
         });
 
@@ -77,6 +101,8 @@ module.exports = function(app) {
                 res.status(204).send(pagamento);
             });
           });
+
+          
  
 }
 
