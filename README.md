@@ -72,6 +72,16 @@ Body:
 }
 ```
 
+* Para realizar um POST de envio de imagem as configuração abaixo devem ser inseridas no POSTMAN.
+
+```
+Method: POST
+URL: http://localhost:3000/upload/imagem
+Headers: Content-Type:application/octet-stream
+         filename:imagem.jpg (mesmo nome do arquivo que vou enviar)
+Body: binary
+```
+
 # Base de Dados
 ```
 CREATE DATABASE IF NOT EXIST payfast;
