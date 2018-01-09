@@ -1,3 +1,18 @@
+# Dependencias
+ ``` npm install express --save ```
+
+ ``` npm install consign --save ```
+
+ ``` npm install body-parser --save ```
+
+ ``` npm install --save mysql ```
+
+ ``` npm install express-validator --save ```
+
+ ``` npm install --save restify-clients ```
+
+``` npm install --save nodemon```
+
 # Postman
 
 * Para realizar um POST de pagamento as configuração abaixo devem ser inseridas no POSTMAN.
