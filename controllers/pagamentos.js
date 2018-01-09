@@ -35,6 +35,48 @@ module.exports = function(app) {
       res.status(201).json(pagamento);
           });
         });
+
+        app.put('/pagamentos/pagamento/:id', function(req, res){
+
+            var pagamento = {};
+            var id = req.params.id;
+        
+            pagamento.id = id;
+            pagamento.status = 'CONFIRMADO';
+        
+            var connection = app.persistencia.connectionFactory();
+            var pagamentoDao = new app.persistencia.PagamentoDao(connection);
+        
+            pagamentoDao.atualiza(pagamento, function(erro){
+                if (erro){
+                  res.status(500).send(erro);
+                  return;
+                }
+                console.log('pagamento atualizado');
+                res.send(pagamento);
+            });
+        
+          });
+
+          app.delete('/pagamentos/pagamento/:id', function(req, res){
+            var pagamento = {};
+            var id = req.params.id;
+        
+            pagamento.id = id;
+            pagamento.status = 'CANCELADO';
+        
+            var connection = app.persistencia.connectionFactory();
+            var pagamentoDao = new app.persistencia.PagamentoDao(connection);
+        
+            pagamentoDao.atualiza(pagamento, function(erro){
+                if (erro){
+                  res.status(500).send(erro);
+                  return;
+                }
+                console.log('pagamento cancelado');
+                res.status(204).send(pagamento);
+            });
+          });
  
 }
 
